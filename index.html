@@ -364,7 +364,7 @@ label.invalid {
   <div>
     <input  id="appmessage" value="" placeholder="Enter message to send to app" style="background-color: blanchedalmond; min-height: 40px; "> </input>
        <button class="btn button" style=" cursor: pointer;"onclick="(function(){
-        window.ReactNativeWebView.postMessage(document.getElementById('appmessage').nodeValue)
+        window.ReactNativeWebView.postMessage(document.getElementById('appmessage').value)
       return false;
   })();return false;">Send Message To App</button>
   </div>
