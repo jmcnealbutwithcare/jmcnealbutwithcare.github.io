@@ -359,8 +359,34 @@ label.invalid {
     
     </form>
   </div>
-  <script  defer src="https://docs.paymentjs.firstdata.com/lib/uat/client-2.0.0.js"></script>
-  <script type="text/javascript" >
+
+
+  <div>
+    <button class="btn button" onclick="(function(){
+      window.location.reload()
+      return false;
+  })();return false;">Refresh Page</button>
+  </div>
+  <script type="text/javascript" async defer >
+
+
+// window.addEventListener('message', (event) => event.data)
+
+// window.WebViewBridge = {
+//     onMessage: this._onMessage,
+// };
+// const event = new Event('WebViewBridge');
+// window.dispatchEvent(event);
+
+
+// // The data is not a string. It is an object.
+// function _onMessage(data){
+//     // Should log "helloFromRN" on load.
+//     console.log(data)
+// }
+
+
+
     const DomUtils = {
   getEl: (selector) => window.document.querySelector(selector),
 
@@ -525,12 +551,14 @@ const onCreate = (paymentForm) => {
 
 setTimeout(() => {
   try{
+    window.ReactNativeWebView.postMessage('Hi from the browser to RN')
    window.firstdata.createPaymentForm(config, hooks, onCreate);
   }catch(error){
     alert(error)
   }
-},2000)
+},5000)
 
   </script>
+  <script src="https://docs.paymentjs.firstdata.com/lib/uat/client-2.0.0.js"></script>
   </body>
 </html>
