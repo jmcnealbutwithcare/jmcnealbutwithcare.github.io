@@ -362,28 +362,30 @@ label.invalid {
 
 
   <div>
-    <button class="btn button" onclick="(function(){
-      window.location.reload()
+    <input  id="appmessage" value="" placeholder="Enter message to send to app" style="background-color: blanchedalmond; min-height: 40px; "> </input>
+       <button class="btn button" style=" cursor: pointer;"onclick="(function(){
+        window.ReactNativeWebView.postMessage(document.getElementById('appmessage').nodeValue)
       return false;
-  })();return false;">Refresh Page</button>
+  })();return false;">Send Message To App</button>
   </div>
   <script type="text/javascript" async defer >
 
 
-// window.addEventListener('message', (event) => event.data)
+window.addEventListener('message', (event) => event.data)
 
-// window.WebViewBridge = {
-//     onMessage: this._onMessage,
-// };
-// const event = new Event('WebViewBridge');
-// window.dispatchEvent(event);
+window.WebViewBridge = {
+    onMessage: this._onMessage,
+};
+const event = new Event('WebViewBridge');
+window.dispatchEvent(event);
 
 
-// // The data is not a string. It is an object.
-// function _onMessage(data){
-//     // Should log "helloFromRN" on load.
-//     console.log(data)
-// }
+// The data is not a string. It is an object.
+function _onMessage(data){
+    // Should log "helloFromRN" on load.
+   alert("Message from app:" + data)
+    // console.log(data)
+}
 
 
 
@@ -551,12 +553,11 @@ const onCreate = (paymentForm) => {
 
 setTimeout(() => {
   try{
-    window.ReactNativeWebView.postMessage('Hi from the browser to RN')
    window.firstdata.createPaymentForm(config, hooks, onCreate);
   }catch(error){
     alert(error)
   }
-},5000)
+},3000)
 
   </script>
   <script src="https://docs.paymentjs.firstdata.com/lib/uat/client-2.0.0.js"></script>
